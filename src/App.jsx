@@ -1,8 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Card from './Card.jsx'
+import axios from 'axios'
+
 
 function App() {
+
+  const [cardData, setcardData] = useState([])
+   console.log(cardData)
+
+  useEffect(() => {
+    axios.get('/api/cards')
+    .then((response) => {
+        setcardData(response.data)
+    })
+}, [])
+
   return (
     <div>
       <section>
@@ -17,9 +30,14 @@ function App() {
         <button onClick={()=>{}} >Submit</button>
       </section>
       <section>
-        <Card/>
-        <Card/>
-        <Card/>
+        { cardData.map((species) => {
+          return (
+            <Card 
+              key={species.id}
+              species={species}
+            />
+          )
+        })}
       </section>
     </div>
   )

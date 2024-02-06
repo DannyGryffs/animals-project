@@ -1,7 +1,7 @@
-function Card() {
+function Card(props) {
     return (
         <div>
-            <h1>Cards</h1>
+            <h1>{props.species.name}</h1>
         </div>
     )
 }
