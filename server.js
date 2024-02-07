@@ -15,5 +15,10 @@ app.get('/api/cards', async (req, res) => {
     res.status(200).send(allSpecies)
 }) 
 
+app.post('/api/card', async (req, res) => {
+    let newSpecies = await Species.create(req.body)
+    res.status(200).send(newSpecies)
+})
+
 
 ViteExpress.listen(app, 3032, () => {console.log('Server cruising on port 3032!')})
